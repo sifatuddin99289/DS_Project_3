@@ -162,5 +162,8 @@ Each node includes:
 - Client request handling (`ClientRequest` RPC)
 
 run the follwing command to clone the git repository
+
+```
 git clone https://github.com/sifatuddin99289/DS_Project_3.git
 
+``` 
