@@ -63,7 +63,7 @@ services:
       ROOM_ADDR: ${ROOM_ADDR:-room:50052}
       PRESENCE_ADDR: ${PRESENCE_ADDR:-presence:50053}
       MESSAGE_ADDR: ${MESSAGE_ADDR:-message:50054}
-      GATEWAY_BIND: ${GATEWAY_BIND:-:50055}
+      GATEWAY_BIND: ${GATEWAY_BIND:-0.0.0.0:50055}  
       NODE_ID: "gateway"             # <-- IDENTIFIER FOR LOGGING
     depends_on:
       - auth
