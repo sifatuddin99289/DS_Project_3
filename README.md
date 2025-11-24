@@ -17,3 +17,12 @@ The system contains the following services:
 5. gateway-service (2PC coordinator)
 
 6. ui-service (simulates client → coordinator)
+
+Foolow the steps to execute the architecture:
+## Clone the Repository
+
+```
+cd ~/Desktop
+git clone https://github.com/sifatuddin99289/DS_Project_3.git
+cd DS_Project_3/2PC-Microservice
+```
