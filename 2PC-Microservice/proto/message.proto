@@ -1,0 +1,96 @@
+syntax = "proto3";
+package message.v1;
+
+service MessageService {
+    // Original functionality
+    rpc Append(AppendReq) returns (AppendResp);
+    rpc List(ListReq) returns (stream Msg);
+    rpc Subscribe(RoomId) returns (stream Msg);
+    rpc NextOffset(RoomId) returns (Offset);
+
+    // 2PC Phase 1 + Phase 2
+    rpc PrepareAppend(PrepareAppendReq) returns (PrepareAppendResp);
+    rpc CommitAppend(CommitAppendReq) returns (CommitAppendResp);
+    rpc AbortAppend(AbortAppendReq) returns (AbortAppendResp);
+}
+
+message RoomId { string room_id = 1; }
+message Offset { int64 value = 1; }
+
+message AppendReq {
+    string room_id = 1;
+    string user_id = 2;
+    string text = 3;
+    string idempotency_key = 4;
+}
+
+message AppendResp {
+    bool success = 1;
+    int64 offset = 2;
+    string error = 3;
+}
+
+message ListReq {
+    string room_id = 1;
+    int64 from_offset = 2;
+    int32 limit = 3;
+}
+
+message Msg {
+    string room_id = 1;
+    string user_id = 2;
+    string text = 3;
+    int64 offset = 4;
+    int64 ts_ms = 5;
+}
+
+//
+// ---------------------------
+//  2PC REQUIRED FIELDS ADDED
+// ---------------------------
+//
+
+message PrepareAppendReq {
+    string transaction_id = 1;
+    string room_id = 2;
+    string user_id = 3;
+    string text = 4;
+    string idempotency_key = 5;
+
+    // REQUIRED for printing logs
+    string caller_node_id = 6;
+    string caller_phase = 7;
+}
+
+message PrepareAppendResp {
+    bool success = 1;
+    string error = 2;
+}
+
+message CommitAppendReq {
+    string transaction_id = 1;
+
+    // REQUIRED for Decision Phase log printing
+    string caller_node_id = 2;
+    string caller_phase = 3;
+}
+
+message CommitAppendResp {
+    bool success = 1;
+    int64 committed_offset = 2;
+    string error = 3;
+}
+
+message AbortAppendReq {
+    string transaction_id = 1;
+
+    // REQUIRED for Decision Phase log printing
+    string caller_node_id = 2;
+    string caller_phase = 3;
+}
+
+message AbortAppendResp {
+    bool success = 1;
+    string error = 2;
+}
+
