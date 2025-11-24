@@ -3,26 +3,6 @@ This is the repository for the project 3 of the distributed systems.
 
 
 
-## Raft Consensus (Object-Based System)
-
-This part of the project implements a simplified **Raft consensus algorithm** on top of the Object-Based Distributed Chat System using **Python, gRPC, and Docker**. The system consists of **five Raft nodes**, each running inside its own container, performing leader election, heartbeat management, and log replication.
-
-## Components
-- raft-node-1  
-- raft-node-2  
-- raft-node-3  
-- raft-node-4  
-- raft-node-5  
-
-Each node includes:
-- Follower → Candidate → Leader state transitions  
-- Random election timeout (1.5–3s)  
-- Heartbeats every 1s  
-- Full log replication from the leader  
-- Client request handling (`ClientRequest` RPC)
-
-run the follwing command to clone the git repository
-git clone https://github.com/sifatuddin99289/DS_Project_3.git
 
 
 ## Running the Raft Cluster
