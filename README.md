@@ -3,14 +3,6 @@ This is the repository for the project 3 of the distributed systems.
 
 
 
-## Running the Raft Cluster
-Inside `object-based-system/`:
-
-```bash
-docker compose up --build
-
-```
-
 # Two-Phase Commit (2PC) Microservice System
 This project implements Two-Phase Commit (2PC) using a distributed microservice architecture with Docker, gRPC, and Python.
 The system contains the following services:
@@ -166,4 +158,14 @@ run the follwing command to clone the git repository
 ```
 git clone https://github.com/sifatuddin99289/DS_Project_3.git
 
-``` 
+```
+
+
+
+## Running the Raft Cluster
+Inside `object-based-system/`:
+
+```bash
+docker compose up --build
+
+```
